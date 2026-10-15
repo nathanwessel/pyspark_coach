@@ -1,0 +1,71 @@
+# DEMO ONLY. Public example. Do not put a proprietary recipe in a customer repo.
+# Actual recipe belongs in a server-only private mount, configured using
+# PYSPARK_COACH_RECIPE_PATH, and must not be committed or packaged.
+version: 1
+rules:
+  - id: df_suffix
+    metric: dataframe_bad_suffix
+    threshold: 0
+    severity: warning
+    action: Rename confirmed DataFrame variables to use the _df suffix consistently.
+    rationale: Consistent naming helps readers identify DataFrame transformations.
+  - id: dict_suffix
+    metric: dictionary_bad_suffix
+    threshold: 0
+    severity: info
+    action: Rename dictionary variables to end with _dict.
+    rationale: Variable suffixes communicate intent without requiring inference.
+  - id: explicit_join_aliases
+    metric: joins_missing_alias
+    threshold: 0
+    severity: warning
+    action: Explicitly alias both sides of joins and qualify columns using those aliases.
+    rationale: Explicit aliases reduce ambiguity in joins and help reviewers follow join logic.
+  - id: join_left_right_order
+    metric: join_operand_order_reversed
+    threshold: 0
+    severity: warning
+    action: Place left DataFrame references on the left side and right references on the right side of equality predicates.
+    rationale: Predictable predicate ordering makes complex joins easier to review.
+  - id: emoji_headings
+    metric: headings_missing_emoji
+    threshold: 0
+    severity: info
+    action: Prefix every section and subsection heading with a descriptive emoji.
+    rationale: Visual navigation markers make large notebooks easier to scan.
+  - id: section_structure
+    metric: missing_section_structure
+    threshold: 0
+    severity: warning
+    action: Organize notebook code into clearly titled Markdown sections and subsections.
+    rationale: Sections make long notebooks navigable for maintainers.
+  - id: subsection_structure
+    metric: missing_subsection_structure
+    threshold: 0
+    severity: info
+    action: Divide the notebook into labeled subsections beneath its larger sections.
+    rationale: Subsections improve navigation within multi-step transformations.
+  - id: shared_import_order
+    metric: shared_utilities_imported_late
+    threshold: 0
+    severity: info
+    action: In the notebook setup area, place imports of shared utilities before notebook-specific imports.
+    rationale: Consistent setup ordering makes shared dependencies easier to find.
+  - id: function_import_aliases
+    metric: functions_imported_without_safe_alias
+    threshold: 0
+    severity: warning
+    action: Alias imported PySpark functions such as min, max, avg, and sum to avoid ambiguous Python names.
+    rationale: Disambiguation reduces the risk of calling the wrong function.
+  - id: pip_install_placement
+    metric: late_pip_installs
+    threshold: 0
+    severity: info
+    action: Keep notebook-specific %pip installs in a clearly marked setup area before the main transformations.
+    rationale: Early dependency installation improves execution reproducibility.
+  - id: parsing_reliability
+    metric: parse_errors
+    threshold: 0
+    severity: warning
+    action: Review cells that static Python parsing could not inspect and check their language or magic syntax.
+    rationale: Incomplete inspection means some issues may have been missed.

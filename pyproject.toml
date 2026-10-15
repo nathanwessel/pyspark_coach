@@ -1,0 +1,35 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "pyspark-coach"
+version = "0.1.0"
+description = "Privacy-conscious PySpark notebook metadata analyzer and private MCP rules service"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "Proprietary - evaluation prototype"}
+dependencies = [
+  "mcp>=2.3,<3",
+  "pydantic>=2.8,<3",
+  "PyYAML>=6.0,<7",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8,<10", "ruff>=0.9"]
+
+[project.scripts]
+pyspark-coach-inspect = "pyspark_coach.cli:main"
+pyspark-coach-mcp = "pyspark_coach.mcp_server:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/pyspark_coach"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP"]

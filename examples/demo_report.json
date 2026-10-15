@@ -1,0 +1,158 @@
+{
+  "before_signals": {
+    "schema_version": 1,
+    "notebook_format": "databricks_py",
+    "code_cells": 4,
+    "markdown_cells": 2,
+    "dataframe_assignments": 3,
+    "dataframe_bad_suffix": 3,
+    "dictionary_assignments": 1,
+    "dictionary_bad_suffix": 1,
+    "joins": 1,
+    "joins_missing_alias": 1,
+    "join_operand_order_reversed": 0,
+    "join_operand_order_unverifiable": 1,
+    "headings": 4,
+    "headings_missing_emoji": 4,
+    "sections": 2,
+    "subsections": 2,
+    "missing_section_structure": 0,
+    "missing_subsection_structure": 0,
+    "shared_utilities_imported_late": 0,
+    "functions_imported_without_safe_alias": 3,
+    "late_pip_installs": 1,
+    "parse_errors": 0
+  },
+  "after_signals": {
+    "schema_version": 1,
+    "notebook_format": "databricks_py",
+    "code_cells": 4,
+    "markdown_cells": 2,
+    "dataframe_assignments": 3,
+    "dataframe_bad_suffix": 0,
+    "dictionary_assignments": 1,
+    "dictionary_bad_suffix": 0,
+    "joins": 1,
+    "joins_missing_alias": 0,
+    "join_operand_order_reversed": 0,
+    "join_operand_order_unverifiable": 0,
+    "headings": 4,
+    "headings_missing_emoji": 0,
+    "sections": 2,
+    "subsections": 2,
+    "missing_section_structure": 0,
+    "missing_subsection_structure": 0,
+    "shared_utilities_imported_late": 0,
+    "functions_imported_without_safe_alias": 0,
+    "late_pip_installs": 0,
+    "parse_errors": 0
+  },
+  "plan_before": {
+    "schema_version": 1,
+    "disclosure": "Individual applicable recommendations are visible to the MCP client; the full private recipe is not returned.",
+    "finding_count": 6,
+    "findings": [
+      {
+        "rule_id": "df_suffix",
+        "severity": "warning",
+        "observed_count": 3,
+        "action": "Rename confirmed DataFrame variables to use the _df suffix consistently.",
+        "why": "Consistent naming helps readers identify DataFrame transformations."
+      },
+      {
+        "rule_id": "function_import_aliases",
+        "severity": "warning",
+        "observed_count": 3,
+        "action": "Alias imported PySpark functions such as min, max, avg, and sum to avoid ambiguous Python names.",
+        "why": "Disambiguation reduces the risk of calling the wrong function."
+      },
+      {
+        "rule_id": "explicit_join_aliases",
+        "severity": "warning",
+        "observed_count": 1,
+        "action": "Explicitly alias both sides of joins and qualify columns using those aliases.",
+        "why": "Explicit aliases reduce ambiguity in joins and help reviewers follow join logic."
+      },
+      {
+        "rule_id": "emoji_headings",
+        "severity": "info",
+        "observed_count": 4,
+        "action": "Prefix every section and subsection heading with a descriptive emoji.",
+        "why": "Visual navigation markers make large notebooks easier to scan."
+      },
+      {
+        "rule_id": "dict_suffix",
+        "severity": "info",
+        "observed_count": 1,
+        "action": "Rename dictionary variables to end with _dict.",
+        "why": "Variable suffixes communicate intent without requiring inference."
+      },
+      {
+        "rule_id": "pip_install_placement",
+        "severity": "info",
+        "observed_count": 1,
+        "action": "Keep notebook-specific %pip installs in a clearly marked setup area before the main transformations.",
+        "why": "Early dependency installation improves execution reproducibility."
+      }
+    ],
+    "limitations": [
+      "Static heuristics are not a proof of runtime behavior or semantic equivalence.",
+      "Inspect and test generated edits locally before merging.",
+      "No performance improvements are claimed without before/after benchmarks."
+    ]
+  },
+  "static_comparison": {
+    "schema_version": 1,
+    "metric_type": "static-analysis-only",
+    "active_findings_before": 6,
+    "active_findings_after": 0,
+    "comparisons": [
+      {
+        "rule_id": "df_suffix",
+        "before": 3,
+        "after": 0,
+        "change": -3,
+        "status": "improved"
+      },
+      {
+        "rule_id": "dict_suffix",
+        "before": 1,
+        "after": 0,
+        "change": -1,
+        "status": "improved"
+      },
+      {
+        "rule_id": "explicit_join_aliases",
+        "before": 1,
+        "after": 0,
+        "change": -1,
+        "status": "improved"
+      },
+      {
+        "rule_id": "emoji_headings",
+        "before": 4,
+        "after": 0,
+        "change": -4,
+        "status": "improved"
+      },
+      {
+        "rule_id": "function_import_aliases",
+        "before": 3,
+        "after": 0,
+        "change": -3,
+        "status": "improved"
+      },
+      {
+        "rule_id": "pip_install_placement",
+        "before": 1,
+        "after": 0,
+        "change": -1,
+        "status": "improved"
+      }
+    ],
+    "improved_rule_count": 6,
+    "regressed_rule_count": 0,
+    "runtime_benchmark_available": false,
+    "semantic_equivalence_proven": false
+  }
+}

@@ -1,0 +1,18 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.venv/
+dist/
+*.egg-info/
+.env
+.env.*
+!*.example
+# The proprietary rules must be stored outside the customer-visible repo.
+config/recipe.private.yaml
+config/recipe.*.private.yaml
+private/
+secrets/
+.DS_Store
+# Personal Claude Code settings
+.claude/settings.local.json
